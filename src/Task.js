@@ -4,48 +4,43 @@ import { Fab } from "@material-ui/core";
 import App from "./App";
 
 const Task = () => {
-  const [todo, setTodo] = useState({
-    iu: [],
-    color: "",
-    box: "",
-  });
+  const [todoList, setTodoList] = useState([]);
+  const [todo, setTodo] = useState("");
 
-  const handleChange = (e) => {
-    setTodo({
-      box: e.target.value,
-      iu: todo.iu,
-      color: "",
-    });
-  };
-  const handleClick = (e) => {
+  function handleChange(event) {
+    setTodo(event.target.value);
+  }
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (todo.box !== "") {
-      setTodo({
-        iu: [todo.box, ...todo.iu],
-        box: "",
-        color: "blue",
-      });
-    }
+
+    if (todo === "") return;
+
+    const newTodo = {
+      text: todo,
+      id: Date.now(),
+    };
+
+    setTodoList([newTodo, ...todoList]);
+    setTodo("");
   };
 
   const handleDelete = (id) => {
-    setTodo({
-      iu: todo.iu.filter((todo, index) => index !== id),
-    });
+    setTodoList(todoList.filter((todo) => todo.id !== id));
   };
 
   return (
     <div className="App">
       <p>todo list</p>
-      <form onSubmit={handleClick}>
+      <form onSubmit={handleSubmit}>
         <input
-          value={todo.box || ""}
+          value={todo}
           name="box"
           onChange={handleChange}
           placeholder="What do you need to do?"
         />
 
-        <div className="mas" onClick={handleClick}>
+        <div className="mas" onClick={handleSubmit}>
           <Fab
             color="primary"
             aria-label="add"
@@ -63,7 +58,7 @@ const Task = () => {
       </form>
 
       <div>
-        <App todo={todo} handleDelete={handleDelete} />
+        <App todoList={todoList} handleDelete={handleDelete} />
       </div>
     </div>
   );
