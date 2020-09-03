@@ -9,7 +9,7 @@ const App = ({ todoList, handleDelete, handleCheck }) => {
       {todoList.length === 0 ? (
         <p className="cantidad">Add a task</p>
       ) : (
-        <p className="cantidad">You have {todoList.length} taks to do</p>
+        <p className="cantidad">You have {todoList.length} task to do</p>
       )}
 
       <ul>
