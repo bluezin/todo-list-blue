@@ -7,6 +7,13 @@ body {
     rgb(24, 90, 157, 1) 100%
   );
 }
+/* body {
+  background: radial-gradient(
+    circle,
+    rgb(193, 199, 198) 0%,
+    rgb(205, 208, 211) 100%
+  );
+} */
 
 @media screen and (max-width: 1300px) {
   body {
@@ -18,14 +25,14 @@ body {
   }
   .contenedor {
     position: relative;
-    right: 15px;
+    right: 24px;
     background-color: rgb(194, 237, 245);
+    margin: 10px;
   }
   input {
     position: relative;
     right: 3px;
   }
-  
 }
 
 .App {
@@ -87,13 +94,12 @@ li {
   font-size: 18px;
   padding: 5px;
   flex-direction: column;
-
+  margin: 10px;
   background: radial-gradient(
     circle,
     rgb(145, 238, 227) 0%,
     rgb(117, 173, 230) 100%
   );
-  
 }
 .cantidad {
   font-size: 20px;
@@ -111,4 +117,9 @@ li {
   margin: 14px;
   position: relative;
   left: 120px;
+}
+
+.color {
+  color: #888888;
+  text-decoration: line-through;
 }

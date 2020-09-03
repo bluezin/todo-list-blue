@@ -3,7 +3,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import "./Task.css";
 
-const App = ({ todoList, handleDelete }) => {
+const App = ({ todoList, handleDelete, handleCheck }) => {
   return (
     <>
       {todoList.length === 0 ? (
@@ -13,23 +13,46 @@ const App = ({ todoList, handleDelete }) => {
       )}
 
       <ul>
-        {todoList.map(({ id, text }) => (
-          <li key={id} className="contenedor">
-            <div className="div">
-              <CheckCircleIcon
-                style={{
-                  fontSize: 30,
-                  float: "left",
-                  color: "rgb(86, 86, 243)",
-                }}
-              />
-              {text}
-              <DeleteOutlineIcon
-                style={{ float: "right" }}
-                onClick={() => handleDelete(id)}
-              />
-            </div>
-          </li>
+        {todoList.map(({ id, text, completed }) => (
+          <div key={id}>
+            {completed ? (
+              <li key={id} className="contenedor color" id="li">
+                <div className="div">
+                  <CheckCircleIcon
+                    style={{
+                      fontSize: 30,
+                      float: "left",
+                      color: completed ? "white" : "rgb(86, 86, 243)",
+                    }}
+                    onClick={() => handleCheck(id)}
+                  />
+                  {text}
+                  <DeleteOutlineIcon
+                    style={{ float: "right" }}
+                    onClick={() => handleDelete(id)}
+                  />
+                </div>
+              </li>
+            ) : (
+              <li key={id} className="contenedor" id="li">
+                <div className="div">
+                  <CheckCircleIcon
+                    style={{
+                      fontSize: 30,
+                      float: "left",
+                      color: completed ? "white" : "rgb(86, 86, 243)",
+                    }}
+                    onClick={() => handleCheck(id)}
+                  />
+                  {text}
+                  <DeleteOutlineIcon
+                    style={{ float: "right" }}
+                    onClick={() => handleDelete(id)}
+                  />
+                </div>
+              </li>
+            )}
+          </div>
         ))}
       </ul>
     </>

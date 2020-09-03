@@ -19,6 +19,7 @@ const Task = () => {
     const newTodo = {
       text: todo,
       id: Date.now(),
+      completed: false,
     };
 
     setTodoList([newTodo, ...todoList]);
@@ -27,6 +28,18 @@ const Task = () => {
 
   const handleDelete = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
+  const handleCheck = (id) => {
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: true };
+        } else {
+          return todo;
+        }
+      })
+    );
   };
 
   return (
@@ -58,7 +71,12 @@ const Task = () => {
       </form>
 
       <div>
-        <App todoList={todoList} handleDelete={handleDelete} />
+        <App
+          todoList={todoList}
+          handleDelete={handleDelete}
+          setTodoList={setTodoList}
+          handleCheck={handleCheck}
+        />
       </div>
     </div>
   );
